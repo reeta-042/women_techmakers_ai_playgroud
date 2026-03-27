@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ============================================
+       EASY EDIT: Change the browser tab title
+       ============================================ -->
+  <title>Rock Paper Scissors — Image Classifier</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.3.1/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@0.8/dist/teachablemachine-image.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <p class="app-label">Teachable Machine — Image</p>
+    <!-- ============================================
+         EASY EDIT: Change your app title here
+         ============================================ -->
+    <h1>Rock <span>Paper</span> Scissors</h1>
+    <p id="status-bar">Paste your model URL and click Start</p>
+  </header>
+
+  <div class="main-grid">
+
+    <!-- LEFT: Webcam + result -->
+    <div class="card fade-in">
+      <p class="card-title">📷 Live Camera</p>
+      <div id="vidContainer"></div>
+
+      <div id="result-display">
+        <span id="res">—</span>
+        <div id="prob-bar-wrap"><div id="prob-bar"></div></div>
+        <p class="prob-label">Confidence: <span id="prob">0%</span></p>
+      </div>
+
+      <!-- Judge buttons -->
+      <div class="judge-row">
+        <button class="btn-correct" id="btn-correct" onclick="correctAnswer()" disabled>✅ Correct</button>
+        <button class="btn-wrong"   id="btn-wrong"   onclick="wrongAnswer()"   disabled>❌ Wrong</button>
+      </div>
+      <div class="tpfp-row">
+        <span class="tp-count">✅ <span id="tp-count">0</span> correct</span>
+        <span class="fp-count">❌ <span id="fp-count">0</span> wrong</span>
+      </div>
+
+      <div id="retrain-prompt">
+        🎉 Nice score! Think you can make your model even better?<br>
+        <!-- ============================================
+             EASY EDIT: Change the retrain message here
+             ============================================ -->
+        Head back to <strong>Teachable Machine</strong>, add more samples, and retrain!
+      </div>
+    </div>
+
+    <!-- RIGHT: Score + Config -->
+    <div style="display:flex; flex-direction:column; gap:16px;">
+
+      <div class="card fade-in">
+        <p class="card-title">🏆 Score</p>
+        <div id="score-display">
+          <div class="score-number" id="score">0</div>
+          <div class="score-label">Points</div>
+        </div>
+        <button class="btn secondary" onclick="resetScore()" style="margin-top:14px">Reset Score</button>
+      </div>
+
+      <div class="card fade-in">
+        <p class="card-title">🎮 Classes</p>
+        <!-- ============================================
+             EASY EDIT: Update class names and hints
+             to match your Teachable Machine model
+             ============================================ -->
+        <ul class="class-list">
+          <li><span class="class-name">✊ Rock</span><span class="class-desc">Make a fist</span></li>
+          <li><span class="class-name">✋ Paper</span><span class="class-desc">Open flat hand</span></li>
+          <li><span class="class-name">✌️ Scissors</span><span class="class-desc">Two fingers up</span></li>
+        </ul>
+      </div>
+
+      <div class="card fade-in">
+        <p class="card-title">⚙️ Model Config</p>
+        <div class="config-row">
+          <label>Model URL</label>
+          <!-- ============================================
+               EASY EDIT: Paste your Teachable Machine
+               model URL here
+               ============================================ -->
+          <input type="text" id="model-url-input"
+            placeholder="https://teachablemachine.withgoogle.com/models/XXXXXXX/">
+        </div>
+        <button class="btn" onclick="startApp()">▶ Start</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>
