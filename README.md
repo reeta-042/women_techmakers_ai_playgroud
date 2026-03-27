@@ -53,8 +53,8 @@ After training:
 ## 💻 Step 3: Run the App
 
 1. Open the project folder
-2. Open `index.html` in your browser  
-   (or use Live Server in VS Code)
+2. Open `index.html` in your browser
+3. Check out your mode here : https://reeta-042.github.io/women_techmakers_ai_playgroud/
 
 ---
 
