@@ -25,6 +25,11 @@ const RETRAIN_SCORE = 5;
 // ============================================================
 const SIZE = 300;
 
+// ============================================================
+//  🔒  FIXED MODEL — do not change this
+// ============================================================
+const MODEL_URL = "https://teachablemachine.withgoogle.com/models/r8wsgg5mm/";
+
 // --- Internal state ---
 let webcam, model, totalClasses;
 let canvas, ctx;
@@ -37,21 +42,14 @@ let running = false;
 async function startApp() {
   if (running) return;
 
-  let url = document.getElementById("model-url-input").value.trim();
-  if (!url) {
-    setStatus("⚠️ Please paste your model URL first.", "error");
-    return;
-  }
-  if (!url.endsWith("/")) url += "/";
-
   setStatus("⏳ Loading model...", "");
 
   try {
-    model = await tmPose.load(url + "model.json", url + "metadata.json");
+    model = await tmPose.load(MODEL_URL + "model.json", MODEL_URL + "metadata.json");
     totalClasses = model.getTotalClasses();
     setStatus("✅ Model ready — " + totalClasses + " classes", "ready");
   } catch(e) {
-    setStatus("❌ Could not load model. Check the URL and try again.", "error");
+    setStatus("❌ Could not load model. Check your internet connection.", "error");
     console.error(e);
     return;
   }
@@ -71,7 +69,6 @@ async function startApp() {
 
     running = true;
 
-    // Enable judge buttons
     document.getElementById("btn-correct").disabled = false;
     document.getElementById("btn-wrong").disabled = false;
 
@@ -104,7 +101,6 @@ async function predict() {
   document.getElementById("prob-bar").style.width = (confidence * 100) + "%";
   document.getElementById("res").className = confidence >= SCORE_THRESHOLD ? "high" : "low";
 
-  // Draw frame + skeleton overlay
   ctx.drawImage(webcam.canvas, 0, 0);
   if (pose) {
     tmPose.drawKeypoints(pose.keypoints, 0.5, ctx);

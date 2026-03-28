@@ -21,7 +21,7 @@
          EASY EDIT: Change your app title here
          ============================================ -->
     <h1>What Am I <span>Doing?</span></h1>
-    <p id="status-bar">Paste your model URL and click Start</p>
+    <p id="status-bar">Click Start to begin</p>
   </header>
 
   <div class="main-grid">
@@ -56,7 +56,7 @@
       </div>
     </div>
 
-    <!-- RIGHT: Score + Config -->
+    <!-- RIGHT: Score + Classes + Start -->
     <div style="display:flex; flex-direction:column; gap:16px;">
 
       <div class="card fade-in">
@@ -72,7 +72,7 @@
         <p class="card-title">🕺 Pose Classes</p>
         <!-- ============================================
              EASY EDIT: Update class names and hints
-             to match your Teachable Machine model
+             to match the model's classes
              ============================================ -->
         <ul class="class-list">
           <li><span class="class-name">🪑 Sitting</span><span class="class-desc">Sit in front of cam</span></li>
@@ -81,16 +81,7 @@
       </div>
 
       <div class="card fade-in">
-        <p class="card-title">⚙️ Model Config</p>
-        <div class="config-row">
-          <label>Model URL</label>
-          <!-- ============================================
-               EASY EDIT: Paste your Teachable Machine
-               pose model URL here
-               ============================================ -->
-          <input type="text" id="model-url-input"
-            placeholder="https://teachablemachine.withgoogle.com/models/XXXXXXX/">
-        </div>
+        <p class="card-title">⚙️ Controls</p>
         <button class="btn" onclick="startApp()">▶ Start</button>
       </div>
 
